@@ -1,0 +1,1 @@
+print("Purga la mas")
