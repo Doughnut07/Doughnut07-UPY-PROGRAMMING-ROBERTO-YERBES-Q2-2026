@@ -1,0 +1,28 @@
+#INPUT
+Mostrar "Ingresa verbo a conjugar: "
+Leer verbo
+
+#PROCESS
+pronombres <- ["yo", "tu", "el", "nosotros", "vosotros", "ellos"]
+terminaciones_ar <- ["o", "as", "a", "amos", "ais", "an"]
+terminaciones_er <- ["o", "es", "e", "emos", "eis", "en"]
+terminaciones_ir <- ["o", "es", "e", "imos", "is", "en"]
+
+longitud <- Longitud(verbo)
+stem <- Subcadena(verbo, 0, longitud - 2)
+terminacion <- Subcadena(verbo, longitud - 2, 2)
+
+Si terminacion == "ar" Entonces
+    lista_terminaciones <- terminaciones_ar
+Sino Si terminacion == "er" Entonces
+    lista_terminaciones <- terminaciones_er
+Sino Si terminacion == "ir" Entonces
+    lista_terminaciones <- terminaciones_ir
+Fin Si
+
+#OUTPUT
+Para index Desde 0 Hasta 5 Hacer
+    pronombre <- pronombres[index]
+    terminacion_actual <- lista_terminaciones[index]
+    Imprimir pronombre + " " + stem + terminacion_actual
+Fin Para
