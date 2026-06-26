@@ -1,61 +1,65 @@
-# Doughnut07-UPY-PROGRAMMING-ROBERTO-YERBES-Q2-2026´
-Git/GitHub Repository
+# Unit 3: Programming Assignment – School Management System
 
-# Unit 2: Programming Assignment – Numerical Integration Calculator
+This repository contains a Python-based implementation developed as part of Unit 3 for the Programming course (Q2-2026).
 
-This repository contains Python-based implementations developed as part of Unit 2 for the Programming course (Q2-2026). 
-
-The primary objective of this assignment is to establish a professional software development environment using Git for version control and GitHub for remote collaboration, applying clean code practices and algorithmic optimization.
+The primary objective of this assignment is to design and build a role-based school management system using structured programming, applying clean code practices, dictionary data structures, and conditional logic to simulate a real-world authentication and grade management workflow.
 
 ---
 
 ## Project Description
 
-### Numerical Integration Calculator
-The main objective of this application is to approximate the area under the curve of a mathematical function f(x) within a defined interval [a, b]. 
+### School Management System
 
-Since computers do not inherently integrate analytically (as one would do manually using calculus rules), this program uses geometric approximations. To achieve high precision, the program divides the total area into 1,000 small segments (n = 1000) and sums the area of each individual segment.
+The main objective of this application is to simulate a basic school management platform where different users — **students**, **professors**, and a **coordinator** — log in with their credentials and are presented with a personalized interface based on their role.
+
+Since real-world systems require access control and role differentiation, this program uses a dictionary-based user database to authenticate users and dynamically display relevant information and options depending on who is logged in.
 
 ---
 
 ## Repository Structure
 
-All deliverables for this assignment are located inside the official folder:
-Classwork-08-Numerical-Integration/
+All deliverables for this assignment are located inside the official folder: `Classwork-10-School-Management-System/`
 
-* numerical_integration.py — The working Python program organized with professional structural comments (# INPUT, # PROCESS, and # OUTPUT).
-* PPP.txt — The complete and structured pseudocode following strict class rules (Plain English, ← for assignments, # for comments, and zero Python syntax).
-* Flowchart.png — The exported flowchart diagram covering the iterative loop logic for each method and the decision-making flow for the selected modes.
+- `school_management_system.py` — The working Python program organized with professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`).
+- `PPP.txt` — The complete and structured pseudocode following strict class rules (Plain English, `←` for assignments, `#` for comments, and zero Python syntax).
+- `Flowchart.png` — The exported flowchart diagram covering the login loop logic, role-based decision flow, and the grade modification workflow for the professor mode.
 
 ---
 
 ## Implementation Details & Architecture
 
-### 1. Preparation and Data Capture (Inputs)
-* Dynamic Input Capture: The program interactively prompts the user for the integration limits (a and b), the function string, and the preferred numerical integration method.
-* Smart Token Validation: A built-in validation mechanism processes the constant pi. If the user inputs "pi", the code automatically invokes the .replace() function to substitute the text with the exact numerical value from the standard math library (math.pi).
-* Step Size Calculation: Once the boundaries are established, the step size h (representing the width or base of each subinterval) is calculated using the standard formula:
-  h = (b - a) / n
+### 1. Data Structures & Input Definition
 
-### 2. Optimization of the Rectangular Methods (LRM, RRM, MRM)
-To enforce DRY (Don't Repeat Yourself) principles and optimize computational efficiency, the development unified the logic of the three rectangular methods into a single, cohesive structure instead of writing three independent loops. This was achieved using shift and constant variables:
+- **User Dictionary:** All users (students, professors, and the coordinator) are stored in a nested dictionary containing their password, role, and full name.
+- **Subjects Tuple:** The list of academic subjects is stored as an immutable tuple, ensuring the course catalog cannot be accidentally modified during execution.
+- **Grades Dictionary:** Each student's grades are stored in a nested dictionary indexed by username and subject name, allowing direct and efficient lookups.
 
-* LRM (Left Riemann Sum): The loop starts without alterations (shift = 0), evaluating the height of the rectangle precisely at the left edge of each subinterval.
-* RRM (Right Riemann Sum): The evaluation point shifts forward by one index (shift = 1), evaluating the height at the right edge of each subinterval.
-* MRM (Midpoint Riemann Sum): A continuous displacement factor (constant = h / 2) is injected into the position variable. This shifts the evaluation point exactly to the geometric center of the subinterval prior to calculating its height.
+### 2. Authentication Loop (PROCESS)
 
-### 3. Trapezoid Method Implementation (TRAP)
-Because the trapezoidal approach relies on a fundamentally different geometric structure compared to flat rectangles, its algorithm is handled separately:
-1. Endpoint Evaluation: The code first isolates, evaluates, and stores the values of the outer boundaries (f(a) and f(b)).
-2. Intermediate Height Summation: A dedicated loop iterates through all intermediate segments, doubling their weights (2 * f(x_i)) to strictly comply with the mathematical trapezoidal rule.
+A `while` loop continuously prompts the user for a username and password until a successful match is found:
+
+- If the username does not exist in the system, an error message is displayed.
+- If the username exists but the password is incorrect, a specific warning is shown.
+- Once both fields match, the loop exits and the session is established with the authenticated user's role.
+
+### 3. Role-Based Output (OUTPUT)
+
+Upon successful login, the program branches into one of three modes based on the authenticated user's role:
+
+- **Student:** Displays a full personal report card with all subject grades. Each subject is automatically classified into a passed set (grade ≥ 7.0) or a pending set (grade < 7.0) using Python set structures.
+- **Professor:** Lists all enrolled students and allows the professor to select a student and a subject to update their grade. Includes input validation, an exit keyword at every step, and a yes/no confirmation before applying any change.
+- **Coordinator:** Displays a complete overview of the system — the full teacher list, the subject catalog, and every student's grades across all subjects.
 
 ---
 
 ## Environment and Tools
 
-* Language: Python
-* Version Control: Git
-* Hosting & Collaboration Platform: GitHub
+- **Language:** Python
+- **Version Control:** Git
+- **Hosting & Collaboration Platform:** GitHub
+
+---
 
 ## AI Use Declaration
-AI tools were used exclusively to assist in drafting, formatting, and refining this README.md file. No AI tools or code assistants were used for writing the actual source code (numerical_integration.py), creating the pseudocode (PPP.txt), designing the flowchart (Flowchart.png), or setting up the Git/GitHub environment. All programming logic and deliverables were developed entirely by me.
+
+AI tools were used to assist in designing and exporting the **Flowchart.png**, helping translate the program's logic into a clear visual diagram. AI was also consulted for **support during the development of certain sections** of `school_management_system.py`, specifically for structuring the role-based conditional blocks and set operations. 
