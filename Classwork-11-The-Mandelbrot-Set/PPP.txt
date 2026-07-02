@@ -1,0 +1,52 @@
+#INPUT
+CREATE empty dictionary config
+
+OPEN "config.txt" AS archivo IN read mode
+
+#PROCESS
+FOR EACH linea IN archivo DO
+    REMOVE blank spaces and line break from linea
+    SPLIT linea USING "=" INTO clave AND valor
+    config[clave] ← CONVERT valor TO decimal
+ENDFOR
+
+CLOSE archivo
+
+ancho    ← CONVERT config["ancho"] TO integer
+alto     ← CONVERT config["alto"] TO integer
+max_iter ← CONVERT config["max_iter"] TO integer
+
+OPEN "clase.csv" AS salida IN write mode
+
+WRITE "fila,columna,iteraciones" TO salida
+
+FOR fila FROM 0 TO alto - 1 DO
+    FOR columna FROM 0 TO ancho - 1 DO
+
+        real ← config["real_min"] +
+                (columna / ancho) *
+                (config["real_max"] - config["real_min"])
+
+        imag ← config["imag_min"] +
+                (columna / ancho) *
+                (config["imag_max"] - config["imag_min"])
+
+        c ← COMPLEX(real, imag)
+
+        z ← COMPLEX(0,0)
+        iteraciones ← 0
+
+        WHILE ABS(z) ≤ 2 AND iteraciones < max_iter DO
+            z ← (z * z) + c
+            iteraciones ← iteraciones + 1
+        ENDWHILE
+
+        WRITE fila + "," + columna + "," + iteraciones TO salida
+
+    ENDFOR
+ENDFOR
+
+CLOSE salida
+
+#OUTPUT
+DISPLAY "Done"
