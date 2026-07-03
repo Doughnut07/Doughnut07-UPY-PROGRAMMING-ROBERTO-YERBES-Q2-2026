@@ -1,18 +1,20 @@
-# Unit 3: Programming Assignment – The Mandelbrot Set
+# Unit 3: Programming Assignment – The Mandelbrot Set Visualization
 
 This repository contains a Python-based implementation developed as part of Unit 3 for the Programming course (Q2-2026).
 
-The primary objective of this assignment is to implement the computational logic behind the **Mandelbrot Set** by reading configurable parameters from an external file, mapping a grid of pixels into the complex plane, computing the number of iterations required for each point to escape, and exporting the results into a CSV file for future visualization.
+The primary objective of this assignment is to transform the numerical data generated in the previous Mandelbrot assignment into a visual representation by reading the CSV file, converting iteration counts into pixel brightness values, and generating a PNG image using the Pillow (PIL) library.
 
 ---
 
 ## Project Description
 
-### The Mandelbrot Set
+### The Mandelbrot Set Visualization
 
-The objective of this application is to calculate how many iterations each point of a two-dimensional grid requires before escaping the Mandelbrot condition. Every point on the grid is converted into a complex number, and the recursive formula is repeatedly applied until either the point escapes or the maximum number of iterations is reached.
+The objective of this application is to convert the raw numerical results obtained from the Mandelbrot computation into a graphical image.
 
-Instead of generating an image directly, this program stores the computed data inside a CSV file. This approach simulates a real-world data pipeline, where numerical computations are performed first and visualizations are generated later from the exported dataset.
+The program loads the iteration data previously stored in a CSV file, normalizes every iteration count into a brightness value between **0** and **255**, assigns the corresponding color to each pixel, and finally saves the generated image as a PNG file.
+
+This assignment demonstrates an important concept in Data Science: separating numerical computation from data visualization by storing intermediate results before rendering them into an image.
 
 ---
 
@@ -20,11 +22,14 @@ Instead of generating an image directly, this program stores the computed data i
 
 All deliverables for this assignment are located inside the official folder:
 
-`Classwork-11-The-Mandelbrot-Set/`
+`Classwork-12-The-Mandelbrot-Visualization/`
 
-* `mandelbrot.py` — The Python implementation organized using professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`).
+* `mandelbrot_visualization.py` — The Python implementation organized using professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`).
 * `PPP.txt` — The complete pseudocode written in Plain English following the class conventions (`←` assignments, `#` comments, and no Python syntax).
-* `Flowchart.png` — The complete flowchart illustrating the configuration loading process, nested iteration loops, Mandelbrot calculations, and CSV export workflow.
+* `Flowchart.png` — The complete flowchart illustrating the configuration loading, CSV parsing, brightness calculation, pixel generation, and image export workflow.
+* `config.txt` — Configuration file containing the image dimensions and Mandelbrot parameters.
+* `clase.csv` — Input dataset generated during Classwork #11 containing every pixel position and its corresponding iteration count.
+* `mandelbrot-clase.png` — Final image generated from the CSV data.
 
 ---
 
@@ -32,48 +37,49 @@ All deliverables for this assignment are located inside the official folder:
 
 ### 1. Configuration Loading
 
-The program begins by opening the `config.txt` file and reading each configuration parameter line by line.
+The program begins by opening the `config.txt` file and reading every configuration parameter into a dictionary.
 
-Each line is separated using the `=` character and stored inside a dictionary, allowing every numerical parameter to be accessed by its corresponding key without hardcoding any values into the program.
+Each value is automatically converted into either an integer or a decimal depending on its format, allowing the program to retrieve the image dimensions and maximum iteration value without hardcoding any constants.
 
-### 2. Grid Mapping (PROCESS)
+### 2. CSV Processing (PROCESS)
 
-Once the configuration has been loaded, the program extracts the grid dimensions (`ancho` and `alto`) along with the maximum iteration limit.
+The application opens the `clase.csv` file and reads all its contents into memory.
 
-Two nested `for` loops traverse every row and column of the grid. Each coordinate is mathematically transformed into its corresponding complex number (`c`) using the configured real and imaginary ranges.
+The first row, which contains the column headers, is discarded, while each remaining record is processed individually by separating:
 
-### 3. Mandelbrot Iteration
+* Row (`fila`)
+* Column (`columna`)
+* Iteration count (`iteraciones`)
 
-For every complex point:
+These values are converted into integers before continuing with the visualization process.
 
-* The variable `z` starts at the complex value `0 + 0j`.
-* An iteration counter starts at zero.
-* A `while` loop repeatedly evaluates the Mandelbrot equation:
+### 3. Brightness Calculation
 
-  `z = z² + c`
+For every pixel, the program determines its brightness according to the number of iterations required for the corresponding complex point to escape.
 
-The loop continues while:
+* If the point reached the maximum number of iterations, the brightness is set to **0**, representing points inside the Mandelbrot set.
+* Otherwise, the iteration count is normalized into a value between **0** and **255**, producing different brightness levels based on how quickly the point escaped.
 
-* The magnitude of `z` remains less than or equal to 2.
-* The iteration counter has not exceeded the configured maximum number of iterations.
+### 4. Image Generation (OUTPUT)
 
-The final iteration count represents how quickly that point escapes from the Mandelbrot set.
+A new image is created using the **HSV** color model provided by the Pillow library.
 
-### 4. CSV Output (OUTPUT)
+Each processed pixel is written into its corresponding position using the calculated brightness value.
 
-After computing the iteration count for each grid position, the program writes one record into the output CSV file using the following format:
+After all pixels have been assigned, the image is converted to the **RGB** color model and saved as:
 
-`fila,columna,iteraciones`
+`mandelbrot-clase.png`
 
-Once every point has been processed, the output file is closed and the program displays the confirmation message:
+Finally, the program displays the confirmation message:
 
-`Done`
+`DONE`
 
 ---
 
 ## Environment and Tools
 
 * **Language:** Python
+* **External Library:** Pillow (PIL)
 * **Version Control:** Git
 * **Hosting & Collaboration Platform:** GitHub
 
@@ -81,4 +87,4 @@ Once every point has been processed, the output file is closed and the program d
 
 ## AI Use Declaration
 
-AI tools were used to assist in designing the **Flowchart.png**, translating the program logic into a structured visual representation. AI was also consulted during the development of the project to support the creation of the pseudocode, improve code organization, and assist in documenting the project through this README while preserving the original algorithm and assignment requirements.
+AI tools were used to assist in designing the **Flowchart.png**, helping convert the program's logic into a structured visual representation. AI was also consulted during the preparation of the project documentation, the development of the pseudocode, and for organizational support while implementing the CSV parsing and image generation workflow using the Pillow library.
