@@ -1,0 +1,58 @@
+#LIBRARIES
+IMPORT Image FROM PIL
+
+#INPUT
+CREATE empty dictionary config
+
+OPEN "config.txt" AS archivo IN read mode
+
+#PROCESS
+FOR EACH linea IN archivo DO
+    REMOVE blank spaces and line break from linea
+    SPLIT linea USING "=" INTO clave AND valor
+
+    IF "." is in valor THEN
+        config[clave] ← CONVERT valor TO decimal
+    ELSE
+        config[clave] ← CONVERT valor TO integer
+    ENDIF
+ENDFOR
+
+CLOSE archivo
+
+OPEN "clase.csv" AS data IN read mode
+READ all lines FROM data INTO datos
+CLOSE data
+
+alto     ← config["alto"]
+ancho    ← config["ancho"]
+max_iter ← config["max_iter"]
+
+CREATE new HSV image img WITH width = ancho AND height = alto
+
+REMOVE first line FROM datos AS encabezados
+
+FOR EACH dato IN datos DO
+
+    SPLIT dato USING "," INTO fila, columna AND iteraciones
+
+    fila        ← CONVERT fila TO integer
+    columna     ← CONVERT columna TO integer
+    iteraciones ← CONVERT iteraciones TO integer
+
+    IF iteraciones = max_iter THEN
+        brillo ← 0
+    ELSE
+        brillo ← CONVERT ((iteraciones / max_iter) × 255) TO integer
+    ENDIF
+
+    SET pixel AT (columna, fila) OF img TO (brillo, 255, 255)
+
+ENDFOR
+
+CONVERT img TO RGB AS img_rgb
+
+SAVE img_rgb AS "mandelbrot-clase.png"
+
+#OUTPUT
+DISPLAY "DONE"
