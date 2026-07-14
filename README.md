@@ -1,90 +1,82 @@
-# Unit 3: Programming Assignment – The Mandelbrot Set Visualization
+# Unit 3: Programming Assignment – Error Handling
 
-This repository contains a Python-based implementation developed as part of Unit 3 for the Programming course (Q2-2026).
+This repository contains the error handling implementation developed as part of Unit 3 for the Programming course (Q2-2026).
 
-The primary objective of this assignment is to transform the numerical data generated in the previous Mandelbrot assignment into a visual representation by reading the CSV file, converting iteration counts into pixel brightness values, and generating a PNG image using the Pillow (PIL) library.
-
----
-
-## Project Description
-
-### The Mandelbrot Set Visualization
-
-The objective of this application is to convert the raw numerical results obtained from the Mandelbrot computation into a graphical image.
-
-The program loads the iteration data previously stored in a CSV file, normalizes every iteration count into a brightness value between **0** and **255**, assigns the corresponding color to each pixel, and finally saves the generated image as a PNG file.
-
-This assignment demonstrates an important concept in Data Science: separating numerical computation from data visualization by storing intermediate results before rendering them into an image.
+The primary objective of this assignment is to improve the robustness of the programs developed in previous classworks by incorporating proper exception handling techniques. The updated programs are able to detect and manage common runtime errors, preventing unexpected crashes while providing meaningful feedback to the user.
 
 ---
 
-## Repository Structure
+# Project Description
+
+## Error Handling Implementation
+
+The objective of this assignment is to enhance the reliability of the previously developed applications by integrating structured error handling.
+
+The programs were updated using Python's `try`, `except`, and related exception handling mechanisms to safely manage situations such as invalid user input, missing files, file access errors, and unexpected runtime exceptions.
+
+Instead of terminating abruptly when an error occurs, each application now displays an informative message and continues or exits gracefully depending on the situation.
+
+This assignment demonstrates one of the most important software engineering practices: writing programs that can anticipate errors and respond to them in a controlled and user-friendly manner.
+
+---
+
+# Repository Structure
 
 All deliverables for this assignment are located inside the official folder:
 
-`Classwork-12-The-Mandelbrot-Visualization/`
+`Classwork-14-Error-Handling/`
 
-* `mandelbrot_visualization.py` — The Python implementation organized using professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`).
-* `PPP.txt` — The complete pseudocode written in Plain English following the class conventions (`←` assignments, `#` comments, and no Python syntax).
-* `Flowchart.png` — The complete flowchart illustrating the configuration loading, CSV parsing, brightness calculation, pixel generation, and image export workflow.
-* `config.txt` — Configuration file containing the image dimensions and Mandelbrot parameters.
-* `clase.csv` — Input dataset generated during Classwork #11 containing every pixel position and its corresponding iteration count.
-* `mandelbrot-clase.png` — Final image generated from the CSV data.
+Contents:
 
----
-
-## Implementation Details & Architecture
-
-### 1. Configuration Loading
-
-The program begins by opening the `config.txt` file and reading every configuration parameter into a dictionary.
-
-Each value is automatically converted into either an integer or a decimal depending on its format, allowing the program to retrieve the image dimensions and maximum iteration value without hardcoding any constants.
-
-### 2. CSV Processing (PROCESS)
-
-The application opens the `clase.csv` file and reads all its contents into memory.
-
-The first row, which contains the column headers, is discarded, while each remaining record is processed individually by separating:
-
-* Row (`fila`)
-* Column (`columna`)
-* Iteration count (`iteraciones`)
-
-These values are converted into integers before continuing with the visualization process.
-
-### 3. Brightness Calculation
-
-For every pixel, the program determines its brightness according to the number of iterations required for the corresponding complex point to escape.
-
-* If the point reached the maximum number of iterations, the brightness is set to **0**, representing points inside the Mandelbrot set.
-* Otherwise, the iteration count is normalized into a value between **0** and **255**, producing different brightness levels based on how quickly the point escaped.
-
-### 4. Image Generation (OUTPUT)
-
-A new image is created using the **HSV** color model provided by the Pillow library.
-
-Each processed pixel is written into its corresponding position using the calculated brightness value.
-
-After all pixels have been assigned, the image is converted to the **RGB** color model and saved as:
-
-`mandelbrot-clase.png`
-
-Finally, the program displays the confirmation message:
-
-`DONE`
+- `school management system.py` — Updated version of the School Management System including professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`) and exception handling.
+- `mandelbrot set math.py` — Updated Mandelbrot Set generator with error handling for configuration loading, file operations, and data processing.
+- `mandelbrot set vis.py` — Updated Mandelbrot visualization program including exception handling while reading CSV files, generating the image, and saving the final output.
 
 ---
 
-## Environment and Tools
+# Implementation Details & Architecture
 
-* **Language:** Python
-* **External Library:** Pillow (PIL)
-* **Version Control:** Git
-* **Hosting & Collaboration Platform:** GitHub
+## 1. Input Validation
+
+Each program validates user input before processing it.
+
+Whenever invalid information is entered, the application catches the corresponding exception and informs the user instead of terminating unexpectedly.
 
 ---
 
-## AI Use Declaration
+## 2. File Handling Protection (PROCESS)
 
-AI tools were used to assist in designing the **Flowchart.png**, helping convert the program's logic into a structured visual representation. AI was also consulted during the preparation of the project documentation, the development of the pseudocode, and for organizational support while implementing the CSV parsing and image generation workflow using the Pillow library.
+Programs that read external files now verify that the required files exist and can be accessed correctly.
+
+Common file-related exceptions such as missing configuration files or inaccessible CSV files are handled using appropriate exception blocks.
+
+---
+
+## 3. Runtime Exception Handling
+
+Operations that may produce runtime errors are enclosed within `try` blocks.
+
+Specific exceptions are handled individually whenever possible, while unexpected exceptions are managed through a general exception handler that prevents the application from crashing.
+
+---
+
+## 4. Program Continuity (OUTPUT)
+
+Whenever possible, the applications continue executing after handling recoverable errors.
+
+If execution cannot safely continue, the programs terminate gracefully while displaying a descriptive error message explaining what happened.
+
+---
+
+# Environment and Tools
+
+- Language: Python
+- External Library: Pillow (PIL) *(used by the Mandelbrot Visualization program)*
+- Version Control: Git
+- Hosting & Collaboration Platform: GitHub
+
+---
+
+# AI Use Declaration
+
+AI tools were used to assist in reviewing the exception handling implementation, improving code organization, and preparing the project documentation. AI was also consulted to verify that appropriate error handling techniques were applied consistently across the School Management System, the Mandelbrot Set generator, and the Mandelbrot Visualization programs while maintaining the original functionality of each application.
