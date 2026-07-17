@@ -1,0 +1,164 @@
+IMPORTAR random
+IMPORTAR stddraw
+DESDE color IMPORTAR Color
+
+FUNCION draw_bars(numbers, selected=())
+    Llamar a stddraw.clear()
+    Definir n = longitud(numbers)
+    Definir bar_width = n / n
+    
+    PARA i, number EN enumerar(numbers) HACER
+        Definir x = i * bar_width + bar_width / 2
+        SI i ESTÁ EN selected ENTONCES
+            Definir color = Color(255, 90, 90)
+        SINO
+            Definir color = Color(70, 130, 220)
+        FIN_SI
+        Llamar a stddraw.setPenColor(color)
+        Llamar a stddraw.filledRectangle(x - bar_width / 2, 0, bar_width * 0.9, number)
+    FIN_PARA
+    Llamar a stddraw.show(100)
+FIN_FUNCION
+
+FUNCION bubble_sort(numbers)
+    Definir n = longitud(numbers)
+    
+    PARA sweep DESDE 0 HASTA n - 1 HACER
+        PARA pair DESDE 0 HASTA n - 2 - sweep HACER
+            SI numbers[pair] > numbers[pair + 1] ENTONCES
+                Intercambiar numbers[pair], numbers[pair + 1] = numbers[pair + 1], numbers[pair]
+            FIN_SI
+        FIN_PARA
+    FIN_PARA
+FIN_FUNCION
+
+FUNCION bubble_sort_animated(numbers)
+    Definir n = longitud(numbers)
+    Llamar a stddraw.setXscale(-0.1, n)
+    Llamar a stddraw.setYscale(-0.5, maximo(numbers) + 1)
+    
+    PARA sweep DESDE 0 HASTA n - 1 HACER
+        Definir swapped = FALSO
+        PARA pair DESDE 0 HASTA n - 2 - sweep HACER
+            Llamar a draw_bars(numbers, selected=(pair, pair+1))
+            SI numbers[pair] > numbers[pair+1] ENTONCES
+                Intercambiar numbers[pair], numbers[pair + 1] = numbers[pair+1], numbers[pair]
+                Definir swapped = VERDADERO
+            FIN_SI
+            Llamar a draw_bars(numbers, selected=(pair, pair+1))
+        FIN_PARA
+        
+        SI NO swapped ENTONCES
+            ROMPER BUCLE
+        FIN_SI
+    FIN_PARA
+    
+    Llamar a draw_bars(numbers)
+FIN_FUNCION
+    
+FUNCION insertion_sort(numbers)
+    Definir n = longitud(numbers)
+    PARA i DESDE 1 HASTA n - 1 HACER
+        Definir key = numbers[i]
+        Definir j = i - 1
+        
+        MIENTRAS j >= 0 Y numbers[j] > key HACER
+            numbers[j + 1] = numbers[j]
+            Definir j = j - 1
+        FIN_MIENTRAS
+            
+        numbers[j + 1] = key
+    FIN_PARA
+    DEVOLVER numbers
+FIN_FUNCION
+
+FUNCION insertion_sort_animated(numbers)
+    Definir n = longitud(numbers)
+    Llamar a stddraw.setXscale(-0.1, n)
+    Llamar a stddraw.setYscale(-0.5, maximo(numbers) + 1)
+
+    PARA i DESDE 1 HASTA n - 1 HACER
+        Definir key = numbers[i]
+        Definir j = i - 1
+        
+        Llamar a draw_bars(numbers, selected=(i,))
+        
+        MIENTRAS j >= 0 Y numbers[j] > key HACER
+            Llamar a draw_bars(numbers, selected=(j, j+1))
+            numbers[j + 1] = numbers[j]
+            Definir j = j - 1
+            Llamar a draw_bars(numbers, selected=(j+1, j+2))
+        FIN_MIENTRAS
+            
+        numbers[j + 1] = key
+        Llamar a draw_bars(numbers, selected=(j+1,))
+
+    Llamar a draw_bars(numbers)
+FIN_FUNCION
+
+FUNCION selection_sort(numbers)
+    Definir n = longitud(numbers)
+    PARA i DESDE 0 HASTA n - 2 HACER
+        Definir min_index = i
+        PARA j DESDE i + 1 HASTA n - 1 HACER
+            SI numbers[j] < numbers[min_index] ENTONCES
+                Definir min_index = j
+            FIN_SI
+        FIN_PARA
+                
+        SI min_index != i ENTONCES
+            Intercambiar numbers[i], numbers[min_index] = numbers[min_index], numbers[i]
+        FIN_SI
+    FIN_PARA
+    DEVOLVER numbers
+FIN_FUNCION
+
+FUNCION selection_sort_animated(numbers)
+    Definir n = longitud(numbers)
+    Llamar a stddraw.setXscale(-0.1, n)
+    Llamar a stddraw.setYscale(-0.5, maximo(numbers) + 1)
+
+    PARA i DESDE 0 HASTA n - 2 HACER
+        Definir min_index = i
+        PARA j DESDE i + 1 HASTA n - 1 HACER
+            Llamar a draw_bars(numbers, selected=(min_index, j))
+            SI numbers[j] < numbers[min_index] ENTONCES
+                Definir min_index = j
+            FIN_SI
+        FIN_PARA
+                
+        SI min_index != i ENTONCES
+            Llamar a draw_bars(numbers, selected=(i, min_index))
+            Intercambiar numbers[i], numbers[min_index] = numbers[min_index], numbers[i]
+            Llamar a draw_bars(numbers, selected=(i, min_index))
+        FIN_SI
+    FIN_PARA
+
+    Llamar a draw_bars(numbers)
+FIN_FUNCION
+
+
+SI el_programa_es_el_principal ENTONCES
+    # Prueba con Bubble Sort
+    Definir arr1 = [Generar entero aleatorio entre 0 y 100 por cada elemento en un rango de 10]
+    Imprimir "Before bubble sort: ", arr1
+    Llamar a bubble_sort_animated(arr1)
+    Imprimir "After bubble sort: ", arr1, "\n"
+    
+
+    # Prueba con Insertion Sort
+
+    #Definir arr2 = [Generar entero aleatorio entre 0 y 100 por cada elemento en un rango de 10]
+    #Imprimir "Before insertion sort: ", arr2
+    #Llamar a insertion_sort_animated(arr2)
+    #Imprimir "After insertion sort: ", arr2, "\n"
+
+    # Prueba con Selection Sort
+
+    #Definir arr3 = [Generar entero aleatorio entre 0 y 100 por cada elemento en un rango de 10]
+    #Imprimir "Before selection sort: ", arr3
+    #Llamar a selection_sort_animated(arr3)
+    #Imprimir "After selection sort: ", arr3
+    
+    Llamar a stddraw.show()
+FIN_SI
