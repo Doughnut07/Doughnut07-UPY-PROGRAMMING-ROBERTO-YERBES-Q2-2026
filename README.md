@@ -1,82 +1,79 @@
-# Unit 3: Programming Assignment – Error Handling
+# Unit 3: Programming Assignment – Sorting Algorithms
 
-This repository contains the error handling implementation developed as part of Unit 3 for the Programming course (Q2-2026).
+This repository contains the sorting algorithms implementation developed as part of Unit 3 for the Programming course (Q2-2026).
 
-The primary objective of this assignment is to improve the robustness of the programs developed in previous classworks by incorporating proper exception handling techniques. The updated programs are able to detect and manage common runtime errors, preventing unexpected crashes while providing meaningful feedback to the user.
+The primary objective of this assignment is to understand and compare different sorting techniques by implementing three classic algorithms and creating an animated visualization of how each algorithm organizes data step by step.
 
----
+## Project Description
 
-# Project Description
+### Sorting Algorithms Implementation
 
-## Error Handling Implementation
+The objective of this assignment is to implement and analyze three fundamental sorting algorithms used in computer science: Bubble Sort, Insertion Sort, and Selection Sort.
 
-The objective of this assignment is to enhance the reliability of the previously developed applications by integrating structured error handling.
+Each algorithm was developed in Python and includes a visual animation that illustrates how the list changes during the sorting process. This allows the user to observe the behavior of each algorithm and better understand the differences in how they organize data.
 
-The programs were updated using Python's `try`, `except`, and related exception handling mechanisms to safely manage situations such as invalid user input, missing files, file access errors, and unexpected runtime exceptions.
+The project also includes the corresponding pseudocode (PPP) and a flowchart that represent the logic of the implemented algorithms before coding.
 
-Instead of terminating abruptly when an error occurs, each application now displays an informative message and continues or exits gracefully depending on the situation.
-
-This assignment demonstrates one of the most important software engineering practices: writing programs that can anticipate errors and respond to them in a controlled and user-friendly manner.
+This assignment demonstrates the importance of algorithm design, problem-solving, and visualization techniques for understanding the internal operation of sorting methods.
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 All deliverables for this assignment are located inside the official folder:
 
-`Classwork-14-Error-Handling/`
+**Classwork-15-Sorting-Algorithms/**
 
-Contents:
+### Contents:
 
-- `school management system.py` — Updated version of the School Management System including professional structural comments (`# INPUT`, `# PROCESS`, and `# OUTPUT`) and exception handling.
-- `mandelbrot set math.py` — Updated Mandelbrot Set generator with error handling for configuration loading, file operations, and data processing.
-- `mandelbrot set vis.py` — Updated Mandelbrot visualization program including exception handling while reading CSV files, generating the image, and saving the final output.
-
----
-
-# Implementation Details & Architecture
-
-## 1. Input Validation
-
-Each program validates user input before processing it.
-
-Whenever invalid information is entered, the application catches the corresponding exception and informs the user instead of terminating unexpectedly.
+* **sorting_algorithms.py** — Python program implementing Bubble Sort, Insertion Sort, and Selection Sort, including animated visualizations and professional structural comments (# INPUT, # PROCESS, and # OUTPUT).
+* **sorting_algorithms_ppp.txt** — Pseudocode Programming Process (PPP) describing the logic of the implemented sorting algorithms.
+* **sorting_algorithms_flowchart.png** — Flowchart representing the algorithm logic based on the PPP.
 
 ---
 
-## 2. File Handling Protection (PROCESS)
+## Implementation Details & Architecture
 
-Programs that read external files now verify that the required files exist and can be accessed correctly.
+### 1. Bubble Sort
 
-Common file-related exceptions such as missing configuration files or inaccessible CSV files are handled using appropriate exception blocks.
+The Bubble Sort algorithm repeatedly compares adjacent elements and swaps them whenever they are in the wrong order. This process continues until the entire list is sorted.
+
+### 2. Insertion Sort
+
+The Insertion Sort algorithm builds the sorted portion of the list one element at a time by inserting each value into its correct position.
+
+### 3. Selection Sort
+
+The Selection Sort algorithm repeatedly searches for the smallest remaining element and places it in its correct position within the list.
+
+### 4. Animated Visualization
+
+Each sorting algorithm includes an animated visualization that updates the bars after every significant step, allowing users to observe how the list changes throughout the sorting process.
+
+### 5. Program Organization
+
+The program is divided into seven functions:
+
+* bubble_sort
+* insertion_sort
+* selection_sort
+* draw_bars
+* bubble_sort_animated
+* insertion_sort_animated
+* selection_sort_animated
+
+This modular structure improves readability, maintenance, and code reuse.
 
 ---
 
-## 3. Runtime Exception Handling
+## Environment and Tools
 
-Operations that may produce runtime errors are enclosed within `try` blocks.
-
-Specific exceptions are handled individually whenever possible, while unexpected exceptions are managed through a general exception handler that prevents the application from crashing.
-
----
-
-## 4. Program Continuity (OUTPUT)
-
-Whenever possible, the applications continue executing after handling recoverable errors.
-
-If execution cannot safely continue, the programs terminate gracefully while displaying a descriptive error message explaining what happened.
+* **Language:** Python
+* **Version Control:** Git
+* **Hosting & Collaboration Platform:** GitHub
 
 ---
 
-# Environment and Tools
+## AI Use Declaration
 
-- Language: Python
-- External Library: Pillow (PIL) *(used by the Mandelbrot Visualization program)*
-- Version Control: Git
-- Hosting & Collaboration Platform: GitHub
-
----
-
-# AI Use Declaration
-
-AI tools were used to assist in reviewing the exception handling implementation, improving code organization, and preparing the project documentation. AI was also consulted to verify that appropriate error handling techniques were applied consistently across the School Management System, the Mandelbrot Set generator, and the Mandelbrot Visualization programs while maintaining the original functionality of each application.
+AI tools were used to assist in reviewing the sorting algorithm implementations, improving code organization, and preparing the project documentation. AI was also consulted to verify the correctness of the Bubble Sort, Insertion Sort, and Selection Sort implementations, as well as to support the development of the visualization functions while preserving the intended behavior and learning objectives of the assignment.
