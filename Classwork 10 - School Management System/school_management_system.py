@@ -1,47 +1,47 @@
 #INPUT
 users = {
-    'rherrera':	{
+    'jperez': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Rafita Herrera'
+        'name': 'Juan Pérez'
     },
-    'ccalderon':	{
+    'dromo': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Clarissa Calderon'
+        'name': 'Daniela Romo'
     },
-    'vcervantes':	{
+    'mjuarez': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Venus Cervantes'
+        'name': 'Mauricio Juárez'
     },
-    'anava':	{
+    'mlopez': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Arturito Nava'
+        'name': 'María López'
     },
-    'mvilchis':	{
+    'euc': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Melany Vilchis'
+        'name': 'Ernesto Uc'
     },
-    'mjimenez':	{
+    'cbalam': {
         'password': '1234',
         'rol': 'student',
-        'name': 'Mareli Jimenez'
+        'name': 'Carlos Balam'
     },
-    'jpedrozo':	{
+    'jpedrozo': {
         'password': '1234',
         'rol': 'professor',
         'name': 'Jorge Pedrozo'
     },
-    'dgamboa':	{
+    'dgamboa': {
         'password': '1234',
         'rol': 'coordinator',
         'name': 'Didier Gamboa'
     }
 }
- 
+
 subjects = (
     "Discrete Mathematics",
     "Programming",
@@ -51,9 +51,9 @@ subjects = (
     "Computer and Server Architecture",
     "Socio-Emotional Skills and Conflict Management"
 )
- 
+
 notes = {
-    'rherrera': {
+    'jperez': {
         'Discrete Mathematics': 8.5,
         'Programming': 9.2,
         'English II': 9.0,
@@ -62,7 +62,7 @@ notes = {
         'Computer and Server Architecture': 6.8,
         'Socio-Emotional Skills and Conflict Management': 9.5
     },
-    'ccalderon': {
+    'dromo': {
         'Discrete Mathematics': 9.0,
         'Programming': 6.7,
         'English II': 9.4,
@@ -71,7 +71,7 @@ notes = {
         'Computer and Server Architecture': 6.5,
         'Socio-Emotional Skills and Conflict Management': 9.8
     },
-    'vcervantes': {
+    'mjuarez': {
         'Discrete Mathematics': 7.5,
         'Programming': 8.0,
         'English II': 8.5,
@@ -80,7 +80,7 @@ notes = {
         'Computer and Server Architecture': 6.2,
         'Socio-Emotional Skills and Conflict Management': 8.9
     },
-    'anava': {
+    'mlopez': {
         'Discrete Mathematics': 9.5,
         'Programming': 9.8,
         'English II': 9.2,
@@ -89,7 +89,7 @@ notes = {
         'Computer and Server Architecture': 9.4,
         'Socio-Emotional Skills and Conflict Management': 10.0
     },
-    'mvilchis': {
+    'euc': {
         'Discrete Mathematics': 8.2,
         'Programming': 6.9,
         'English II': 8.8,
@@ -98,7 +98,7 @@ notes = {
         'Computer and Server Architecture': 8.1,
         'Socio-Emotional Skills and Conflict Management': 9.0
     },
-    'mjimenez': {
+    'cbalam': {
         'Discrete Mathematics': 8.8,
         'Programming': 9.0,
         'English II': 8.5,
@@ -108,11 +108,12 @@ notes = {
         'Socio-Emotional Skills and Conflict Management': 9.2
     }
 }
-#PROCESS
+
+# PROCESS
 logged = False
 current_user = ""
 
-while logged == False:
+while not logged:
     user = input("User: ")
     password = input("Password: ")
     
@@ -127,7 +128,7 @@ while logged == False:
 
 user_role = users[current_user]['rol']
 
-#OUTPUT
+# OUTPUT
 print(f"\nWelcome, {users[current_user]['name']} ({user_role})")
 
 if user_role == 'student':

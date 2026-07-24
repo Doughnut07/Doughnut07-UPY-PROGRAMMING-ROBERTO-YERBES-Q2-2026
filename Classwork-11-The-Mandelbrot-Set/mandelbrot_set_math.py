@@ -9,7 +9,7 @@ archivo.close()
 
 ancho, alto, max_iter = int(config["ancho"]), int(config["alto"]), int(config["max_iter"])
 
-salida = open("clase.csv", "w")
+salida = open("mandelbrot.csv", "w")
 salida.write("fila,columna,iteraciones\n")
 
 for fila in range(alto):

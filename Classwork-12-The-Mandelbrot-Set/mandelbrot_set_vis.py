@@ -9,7 +9,7 @@ for linea in archivo:
     config[clave] = float(valor) if "." in valor else int(valor)
 archivo.close()
 
-with open("clase.csv", 'r') as data:
+with open("mandelbrot.csv", 'r') as data:
     datos = data.readlines() 
 
 alto, ancho, max_iter =config["alto"], config["ancho"], config["max_iter"]
