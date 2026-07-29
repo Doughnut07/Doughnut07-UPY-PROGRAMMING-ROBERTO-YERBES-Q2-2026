@@ -1,20 +1,20 @@
-# Unit 3: Programming Assignment – Sorting Algorithms
+# Unit 4: Programming Assignment – Recursive Functions
 
-This repository contains the sorting algorithms implementation developed as part of Unit 3 for the Programming course (Q2-2026).
+This repository contains the recursive functions implementation developed as part of Unit 4 for the Programming course (Q2-2026).
 
-The primary objective of this assignment is to understand and compare different sorting techniques by implementing three classic algorithms and creating an animated visualization of how each algorithm organizes data step by step.
+The primary objective of this assignment is to understand how recursive algorithms work by implementing several classic recursive functions in Python while incorporating proper error handling techniques to prevent crashes caused by invalid input.
 
 ## Project Description
 
-### Sorting Algorithms Implementation
+### Recursive Functions Implementation
 
-The objective of this assignment is to implement and analyze three fundamental sorting algorithms used in computer science: Bubble Sort, Insertion Sort, and Selection Sort.
+The objective of this assignment is to implement and analyze several recursive functions commonly used to solve mathematical and algorithmic problems. Each function demonstrates the use of a **base case** and a **recursive case**, allowing the problem to be solved by repeatedly reducing it until the stopping condition is reached.
 
-Each algorithm was developed in Python and includes a visual animation that illustrates how the list changes during the sorting process. This allows the user to observe the behavior of each algorithm and better understand the differences in how they organize data.
+To improve the robustness of the program, all functions include input validation and exception handling using `try/except`, preventing runtime errors such as infinite recursion, invalid data types, division by zero, and other invalid inputs described in the tutorial.
 
-The project also includes the corresponding pseudocode (PPP) and a flowchart that represent the logic of the implemented algorithms before coding.
+The project also includes the corresponding pseudocode (PPP) and a flowchart representing the logic of each recursive function before implementation.
 
-This assignment demonstrates the importance of algorithm design, problem-solving, and visualization techniques for understanding the internal operation of sorting methods.
+This assignment demonstrates the importance of recursive problem solving, algorithm design, input validation, and defensive programming practices.
 
 ---
 
@@ -22,47 +22,68 @@ This assignment demonstrates the importance of algorithm design, problem-solving
 
 All deliverables for this assignment are located inside the official folder:
 
-**Classwork-15-Sorting-Algorithms/**
+**Classwork-16-Recursive-Functions/**
 
-### Contents:
+### Contents
 
-* **sorting_algorithms.py** — Python program implementing Bubble Sort, Insertion Sort, and Selection Sort, including animated visualizations and professional structural comments (# INPUT, # PROCESS, and # OUTPUT).
-* **sorting_algorithms_ppp.txt** — Pseudocode Programming Process (PPP) describing the logic of the implemented sorting algorithms.
-* **sorting_algorithms_flowchart.png** — Flowchart representing the algorithm logic based on the PPP.
+* **recursive_functions.py** — Python program implementing all recursive functions from the tutorial, including complete input validation, exception handling using `try/except`, and professional structural comments.
+* **recursive_functions_ppp.txt** — Pseudocode Programming Process (PPP) describing the logic of each recursive function before implementation.
+* **recursive_functions_flowchart.png** — Flowchart representing the recursive logic based on the corresponding pseudocode.
 
 ---
 
 ## Implementation Details & Architecture
 
-### 1. Bubble Sort
+### 1. Countdown Recursion (`recursiva`)
 
-The Bubble Sort algorithm repeatedly compares adjacent elements and swaps them whenever they are in the wrong order. This process continues until the entire list is sorted.
+Implements a simple recursive countdown that repeatedly decreases the input value until reaching the base case.
 
-### 2. Insertion Sort
+### 2. Fibonacci (`fibonacci`)
 
-The Insertion Sort algorithm builds the sorted portion of the list one element at a time by inserting each value into its correct position.
+Calculates the nth Fibonacci number using recursive calls based on the two previous values in the sequence.
 
-### 3. Selection Sort
+### 3. Factorial (`factorial`)
 
-The Selection Sort algorithm repeatedly searches for the smallest remaining element and places it in its correct position within the list.
+Computes the factorial of a non-negative integer through recursive multiplication.
 
-### 4. Animated Visualization
+### 4. Recursive Multiplication (`multiplicacion_recursiva`)
 
-Each sorting algorithm includes an animated visualization that updates the bars after every significant step, allowing users to observe how the list changes throughout the sorting process.
+Performs multiplication using only recursive addition instead of the multiplication operator.
 
-### 5. Program Organization
+### 5. Recursive Integer Division (`division_entera_recursiva`)
 
-The program is divided into seven functions:
+Calculates integer division by repeatedly subtracting the divisor until the dividend becomes smaller.
 
-* bubble_sort
-* insertion_sort
-* selection_sort
-* draw_bars
-* bubble_sort_animated
-* insertion_sort_animated
-* selection_sort_animated
+### 6. Recursive Power (`potencia_recursiva`)
 
-This modular structure improves readability, maintenance, and code reuse.
+Calculates the power of a number by recursively multiplying the base until the exponent reaches zero.
+
+### 7. Collatz Sequence (`serie_collatz`)
+
+Generates the Collatz sequence recursively until the value reaches the stopping condition.
+
+### 8. Flatten JSON (`aplanar_json`)
+
+Traverses nested dictionaries recursively and converts them into a single-level dictionary using compound keys.
+
+### 9. Error Handling
+
+All recursive functions validate their inputs before making recursive calls. Invalid values such as negative numbers, incorrect data types, division by zero, or unsupported structures are handled using `try/except`, allowing the program to continue executing without crashing.
+
+### 10. Program Organization
+
+The program is divided into eight functions:
+
+* `recursiva`
+* `fibonacci`
+* `factorial`
+* `multiplicacion_recursiva`
+* `division_entera_recursiva`
+* `potencia_recursiva`
+* `serie_collatz`
+* `aplanar_json`
+
+This modular organization improves readability, maintainability, and code reuse while making each recursive algorithm independent and easier to understand.
 
 ---
 
@@ -76,4 +97,4 @@ This modular structure improves readability, maintenance, and code reuse.
 
 ## AI Use Declaration
 
-AI tools were used to assist in reviewing the sorting algorithm implementations, improving code organization, and preparing the project documentation. AI was also consulted to verify the correctness of the Bubble Sort, Insertion Sort, and Selection Sort implementations, as well as to support the development of the visualization functions while preserving the intended behavior and learning objectives of the assignment.
+AI tools were used to assist in reviewing the recursive function implementations, improving code organization, verifying proper recursive logic, and incorporating appropriate exception handling for invalid inputs. AI was also consulted to help prepare the project documentation, pseudocode, and flowchart while preserving the intended behavior, learning objectives, and recursive implementation required for the assignment.
