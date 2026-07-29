@@ -1,0 +1,223 @@
+ALGORITMO RECURSIVE_FUNCTIONS
+
+FUNCION recursiva(n)
+
+    Intentar
+
+        Si n no es un entero Entonces
+            Lanzar Error
+        FinSi
+
+        Si n < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si n = 0 Entonces
+            Retornar "Done!"
+        Sino
+            Escribir n
+            Retornar recursiva(n - 1)
+        FinSi
+
+    Capturar Error
+        Escribir "Error en recursiva"
+
+FIN FUNCION
+
+FUNCION fibonacci(n)
+
+    Intentar
+
+        Si n no es un entero Entonces
+            Lanzar Error
+        FinSi
+
+        Si n < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si n = 0 O n = 1 Entonces
+            Retornar n
+        Sino
+            Retornar fibonacci(n - 1) + fibonacci(n - 2)
+        FinSi
+
+    Capturar Error
+        Escribir "Error en fibonacci"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION factorial(n)
+
+    Intentar
+
+        Si n no es un entero Entonces
+            Lanzar Error
+        FinSi
+
+        Si n < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si n = 0 O n = 1 Entonces
+            Retornar 1
+        Sino
+            Retornar factorial(n - 1) * n
+        FinSi
+
+    Capturar Error
+        Escribir "Error en factorial"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION multiplicacion_recursiva(a, b)
+
+    Intentar
+
+        Si a o b no son enteros Entonces
+            Lanzar Error
+        FinSi
+
+        Si b < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si b = 0 Entonces
+            Retornar 0
+        Sino
+            Retornar a + multiplicacion_recursiva(a, b - 1)
+        FinSi
+
+    Capturar Error
+        Escribir "Error en multiplicacion_recursiva"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION division_entera_recursiva(dividendo, divisor)
+
+    Intentar
+
+        Si dividendo o divisor no son enteros Entonces
+            Lanzar Error
+        FinSi
+
+        Si divisor = 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si dividendo < 0 O divisor < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si dividendo < divisor Entonces
+            Retornar 0
+        Sino
+            Retornar 1 + division_entera_recursiva(dividendo - divisor, divisor)
+        FinSi
+
+    Capturar Error
+        Escribir "Error en division_entera_recursiva"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION potencia_recursiva(base, exponente)
+
+    Intentar
+
+        Si base no es un número Entonces
+            Lanzar Error
+        FinSi
+
+        Si exponente no es un entero Entonces
+            Lanzar Error
+        FinSi
+
+        Si exponente < 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si exponente = 0 Entonces
+            Retornar 1
+        Sino
+            Retornar potencia_recursiva(base, exponente - 1) * base
+        FinSi
+
+    Capturar Error
+        Escribir "Error en potencia_recursiva"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION serie_collatz(n)
+
+    Intentar
+
+        Si n no es un entero Entonces
+            Lanzar Error
+        FinSi
+
+        Si n <= 0 Entonces
+            Lanzar Error
+        FinSi
+
+        Si n = 1 Entonces
+            Escribir "END!"
+            Retornar 0
+        Sino
+
+            Si n MOD 2 = 0 Entonces
+                Escribir n / 2
+                Retornar serie_collatz(n / 2)
+            Sino
+                Escribir (3 * n) + 1
+                Retornar serie_collatz((3 * n) + 1)
+            FinSi
+
+        FinSi
+
+    Capturar Error
+        Escribir "Error en serie_collatz"
+        Retornar NULO
+
+FIN FUNCION
+
+FUNCION aplanar_json(diccionario, clave_padre, separador)
+
+    Intentar
+
+        Si diccionario no es un diccionario Entonces
+            Lanzar Error
+        FinSi
+
+        Crear lista elementos vacía
+
+        Para cada llave y valor del diccionario
+
+            Si clave_padre está vacía Entonces
+                nueva_llave = llave
+            Sino
+                nueva_llave = clave_padre + separador + llave
+            FinSi
+
+            Si valor es un diccionario Entonces
+                Agregar el resultado de
+                aplanar_json(valor, nueva_llave, separador)
+            Sino
+                Agregar (nueva_llave, valor)
+            FinSi
+
+        FinPara
+
+        Retornar elementos
+
+    Capturar Error
+        Escribir "Error en aplanar_json"
+        Retornar Diccionario vacío
+
+FIN FUNCION
+
+FIN ALGORITMO
